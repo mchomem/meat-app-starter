@@ -11,7 +11,11 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantComponent } from './restaurants/restaurant/restaurant.component'
-
+import { RestaurantsService } from './restaurants/restaurants.service';
+import { RestaurantDetailsComponent } from './restaurant-details/restaurant-details.component';
+import { MenuComponent } from './restaurant-details/menu/menu.component';
+import { ShoppingCartComponent } from './restaurant-details/shopping-cart/shopping-cart.component';
+import { MenuItemComponent } from './restaurant-details/menu-item/menu-item.component'
 
 @NgModule({
   declarations: [
@@ -20,14 +24,18 @@ import { RestaurantComponent } from './restaurants/restaurant/restaurant.compone
     HomeComponent,
     AboutComponent,
     RestaurantsComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    RestaurantDetailsComponent,
+    MenuComponent,
+    ShoppingCartComponent,
+    MenuItemComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     RouterModule.forRoot(ROUTES) // Acrescentar a função forRoot() passando a constante ROUTES criada no arquivo app.routes.ts para configurar as rotas da aplicação.
   ],
-  providers: [],
+  providers: [RestaurantsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
