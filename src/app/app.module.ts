@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+
+// O Token LOCALE_ID servirá para ajuste de localização de moeda brasileira para a app.
+import { NgModule , LOCALE_ID} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { FormsModule} from '@angular/forms'
 
 import { ROUTES } from './app.routes'
 
@@ -17,6 +20,13 @@ import { MenuComponent } from './restaurant-details/menu/menu.component';
 import { ShoppingCartComponent } from './restaurant-details/shopping-cart/shopping-cart.component';
 import { MenuItemComponent } from './restaurant-details/menu-item/menu-item.component';
 import { ReviewsComponent } from './restaurant-details/reviews/reviews.component'
+import { ShoppingCartService } from './restaurant-details/shopping-cart/shopping-cart.service';
+import { OrderComponent } from './order/order.component';
+import { InputComponent } from './shared/input/input.component';
+import { RadioComponent } from './shared/radio/radio.component';
+import { OrderItemsComponent } from './order/order-items/order-items.component';
+import { OrderService } from './order/order.service';
+import { DeliveryCostsComponent } from './order/delivery-costs/delivery-costs.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +40,25 @@ import { ReviewsComponent } from './restaurant-details/reviews/reviews.component
     MenuComponent,
     ShoppingCartComponent,
     MenuItemComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    OrderComponent,
+    InputComponent,
+    RadioComponent,
+    OrderItemsComponent,
+    DeliveryCostsComponent
   ],
   imports: [
-    BrowserModule,
-    HttpModule,
-    RouterModule.forRoot(ROUTES) // Acrescentar a função forRoot() passando a constante ROUTES criada no arquivo app.routes.ts para configurar as rotas da aplicação.
+    BrowserModule
+    , HttpModule
+    , FormsModule
+    , RouterModule.forRoot(ROUTES) // Acrescentar a função forRoot() passando a constante ROUTES criada no arquivo app.routes.ts para configurar as rotas da aplicação.
   ],
-  providers: [RestaurantsService],
+  providers: [
+    RestaurantsService
+    , ShoppingCartService
+    , OrderService
+    , { provide: LOCALE_ID, useValue: 'pt-BR' } // Acrescentar esta configuração para ajustar a localização da aplicação.
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
