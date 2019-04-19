@@ -6,6 +6,7 @@ import { RestaurantDetailsComponent } from './restaurant-details/restaurant-deta
 import { MenuComponent } from './restaurant-details/menu/menu.component'
 import { ReviewsComponent } from './restaurant-details/reviews/reviews.component'
 import { OrderComponent } from './order/order.component'
+import { OrderSummaryComponent } from './order-summary/order-summary.component'
 
 // Configuração das rotas da aplicação.
 export const ROUTES: Routes = [
@@ -19,5 +20,6 @@ export const ROUTES: Routes = [
             , {path: 'reviews', component: ReviewsComponent}
         ]}
     , {path: 'order', component: OrderComponent}
+    , {path: 'order-summary', component: OrderSummaryComponent}
     , {path: 'about', component: AboutComponent}
 ]
