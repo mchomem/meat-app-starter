@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ContentChild, AfterContentInit } from '@angular/core'
-import { NgModel } from '@angular/forms'
+import { NgModel, FormControlName } from '@angular/forms'
 
 @Component({
   selector: 'mt-input-container',
@@ -12,6 +12,7 @@ export class InputComponent implements OnInit, AfterContentInit {
   @Input() errorMessage: string
 
   @ContentChild(NgModel) model: NgModel
+  @ContentChild(FormControlName) control: FormControlName
 
   constructor() { }
 
@@ -20,9 +21,10 @@ export class InputComponent implements OnInit, AfterContentInit {
 
   // Esse método será chamado quando o conteúdo for defindo.
   ngAfterContentInit() {
-    this.input = this.model
+    /* Reactive forms: para não desfazer a abordagem de NgModel, basta ajustar o código para acrescentar o uso de FormControlName (ou) */
+    this.input = this.model || this.control
     if(this.input === undefined) {
-      throw new Error('Esse componente precisar ser usado com a diretiva ngModel')
+      throw new Error('Esse componente precisar ser usado com a diretiva ngModel ou formControlName')
     }
   }
 
