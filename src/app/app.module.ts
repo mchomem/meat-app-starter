@@ -39,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule
     , HttpModule
     , SharedModule.forRoot()
+
     /* Acrescentar a função forRoot() passando a constante ROUTES criada no arquivo app.routes.ts para configurar as rotas da aplicação. */
     , RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
