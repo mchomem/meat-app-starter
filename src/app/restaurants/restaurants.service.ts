@@ -13,8 +13,13 @@ export class RestaurantsService {
 
     constructor(private http: Http) { }
 
-    restaurants(): Observable<Restaurant[]> {
-        return this.http.get(`${MEAT_API}/restaurants`)
+    restaurants(search?: string): Observable<Restaurant[]> {
+        /* O json-server tem um bom suporte a testes para simular ambientes de produção.
+        Neste caso, como precisamos que seja passado um parâmetro opcional para o seu
+        provider de dados, é possível utilizar um parâmetro "q" que servira de busca genérica,
+        ou seja, o usuário irá digitar qualquer valor e esse valor será comparado com os atributos
+        de restaurant */
+        return this.http.get(`${MEAT_API}/restaurants`, {params: {q: search}})
             .map(response => response.json())
             .catch(ErrorHandler.handlerError)
     }

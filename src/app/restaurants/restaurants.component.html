@@ -1,16 +1,40 @@
- <!-- INíCIO do CONTEÚDO -->
- <section class="content-header">
-    <h1>
-      Todos os Restaurantes
-    </h1>
-  </section>
+<!-- INíCIO do CONTEÚDO -->
+<section class="content-header">
+  <h1>
+    Todos os Restaurantes
+    <a (click)="toogleSearch()" class="search-link pull-right">
+      <span *ngIf="iptSearch.value"><small>{{iptSearch.value}}</small></span> <i class="fa fa-search"></i>
+    </a>
+  </h1>
 
-  <section class="content">
-    <div class="row">
-      <div *ngFor="let restaurant of restaurants" class="col-sm-6 col-xs-12">
-        <mt-restaurant [restaurant]="restaurant"></mt-restaurant>
-      </div>
-      <!-- /.col -->
+  <!-- Search bar of restaurants -->
+  <div class="row">
+    <div class="col-xs-12 search-bar" [@toogleSearch]="searchBarState">
+      <form [formGroup]="searchForm">
+        <div class="form-group">
+          <input
+            #iptSearch
+            class="form-control"
+            formControlName="searchControl"
+            placeholder="O que você está procurando?"
+            type="text">
+        </div>
+      </form>
     </div>
-  </section>
-  <!-- FIM  do CONTEÚDO -->
+  </div>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div *ngFor="let restaurant of restaurants" class="col-sm-6 col-xs-12">
+      <mt-restaurant [restaurant]="restaurant"></mt-restaurant>
+    </div>
+    <div *ngIf="restaurants?.length === 0" class="col-xs-12">
+      <div class="alert alert-warning text-center">
+        Não foram encontrados items para a sua consulta
+      </div>
+    </div>
+    <!-- /.col -->
+  </div>
+</section>
+<!-- FIM  do CONTEÚDO -->
