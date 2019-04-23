@@ -8,9 +8,9 @@
     <p>Seu pedido foi recebido pelo restaurante. Prepare a mesa que a comida está chegando!</p>
     <p><b>Avalie</b> sua experiência:</p>
     <p>
-      <mt-rating (rated)="rated = true"></mt-rating>
+      <mt-rating (rated)="rate()"></mt-rating>
     </p>
-    <div [hidden]="!rated" class="alert alert-success">Obrigado pela sua avaliação!</div>
+    <div *ngIf="rated" class="alert alert-success">Obrigado pela sua avaliação!</div>
   </div>
 
 </section>

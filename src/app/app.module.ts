@@ -1,11 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 
-// O Token LOCALE_ID servirá para ajuste de localização de moeda brasileira para a app.
-import { NgModule , LOCALE_ID} from '@angular/core';
+import { NgModule , LOCALE_ID} from '@angular/core'; // O Token LOCALE_ID servirá para ajuste de localização de moeda brasileira para a app.
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router'; // PreloadAllModules permite utilizar a estratégia de pre-loading do Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations' // Permitir capacidade de animação ao app
+
+/* O import de LocationStrategy e HashLocationStrategy permite utilizar a estratégia de # (hash) na app
+   Isso evita o problema que ocorre somente em produção, pois se o usuário tentar acessar uma parte da
+   aplicação, fazendo uso de uma url (copiado nos favoritos por exemplo), dentro de um servidor padrão,
+   o mesmo irá retornar 404.
+   Isso ocorre somente em produção, pois em DEV o Angular ao não encontrar a url solicitada (das rotas),
+   chama index.html (que carrega todos os outros scripts e recursos), analisa a url solicitada pelo browser
+   e a redireciona, o que não ocorre no servidor padrão.
+*/
+import { LocationStrategy, HashLocationStrategy } from '@angular/common'
 
 import { ROUTES } from './app.routes'
 
@@ -21,6 +30,7 @@ import { MenuItemComponent } from './restaurant-details/menu-item/menu-item.comp
 import { ReviewsComponent } from './restaurant-details/reviews/reviews.component'
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +45,7 @@ import { SharedModule } from './shared/shared.module';
     MenuItemComponent,
     ReviewsComponent,
     OrderSummaryComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule
@@ -46,7 +57,8 @@ import { SharedModule } from './shared/shared.module';
     , RouterModule.forRoot(ROUTES, {preloadingStrategy: PreloadAllModules})
   ],
   providers: [    
-    { provide: LOCALE_ID, useValue: 'pt-BR' } // Acrescentar esta configuração para ajustar a localização da aplicação.
+    {provide: LocationStrategy, useClass: HashLocationStrategy} // Permite o uso da estratégia de navegação com o paradigma hash.
+    , {provide: LOCALE_ID, useValue: 'pt-BR'} // Acrescentar esta configuração para ajustar a localização da aplicação.
   ],
   bootstrap: [AppComponent]
 })
