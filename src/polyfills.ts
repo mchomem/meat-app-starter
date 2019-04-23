@@ -18,7 +18,10 @@ import 'core-js/es6/reflect';
 import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';
 
-// Necessário para ajuste de 'localização' da modeda brasileira.
+// Necessário para ajuste de 'localização' da moeda brasileira.
 // OBS: no arquivo package.json deve estar configurado o pacote do intl
 import 'intl'
 import 'intl/locale-data/jsonp/pt-BR.js'
+
+// Permitir capacidade de animação ao app
+import 'web-animations-js/web-animations.min.js'

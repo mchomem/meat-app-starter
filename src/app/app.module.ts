@@ -5,6 +5,7 @@ import { NgModule , LOCALE_ID} from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router'; // PreloadAllModules permite utilizar a estratégia de pre-loading do Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations' // Permitir capacidade de animação ao app
 
 import { ROUTES } from './app.routes'
 
@@ -37,6 +38,7 @@ import { SharedModule } from './shared/shared.module';
   ],
   imports: [
     BrowserModule
+    , BrowserAnimationsModule // Permitir capacidade de animação ao app
     , HttpModule
     , SharedModule.forRoot()
 

@@ -92,4 +92,8 @@ export class OrderComponent implements OnInit {
     console.log(order)
   }
 
+  returnRestaurantsMenu() {
+    this.router.navigate(['/restaurants'])
+  }
+
 }

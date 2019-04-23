@@ -1,0 +1,7 @@
+<!--  Para teste da animação do componente snackbar
+<button (click)="toggleSnack()" class="btn btn-primary" type="button">Test SnackBar</button>
+-->
+
+<div class="snackbar" [@snack-visibility]="snackVisibility">
+    {{message}}
+</div>

@@ -1,6 +1,5 @@
 // Exemplo de módulo compartilhado
 
-
 import { NgModule, ModuleWithProviders } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -14,12 +13,15 @@ import { RatingComponent } from './rating/rating.component'
 import { ShoppingCartService } from '../restaurant-details/shopping-cart/shopping-cart.service'
 import { RestaurantsService } from '../restaurants/restaurants.service'
 import { OrderService } from '../order/order.service'
+import { SnackbarComponent } from './messages/snackbar/snackbar.component'
+import { NotificationService } from '../shared/messages/notification.service'
 
 @NgModule({
     declarations: [
         InputComponent
         , RadioComponent
         , RatingComponent
+        , SnackbarComponent
     ]
     , imports: [
         CommonModule
@@ -33,16 +35,20 @@ import { OrderService } from '../order/order.service'
         , CommonModule
         , FormsModule
         , ReactiveFormsModule
+        , SnackbarComponent
     ]
 })
 export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule
+            
+            // Disponibiliza os serviços nos provider para toda a app
             , providers: [
                 ShoppingCartService
                 , RestaurantsService
                 , OrderService
+                , NotificationService
             ]
         }
     }

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { RestaurantsService } from '../restaurants/restaurants.service'
-import { Restaurant } from '../restaurants/restaurant/restaurant.model';
+import { Restaurant } from '../restaurants/restaurant/restaurant.model'
 
 @Component({
-  selector: 'mt-restaurant-details',
-  templateUrl: './restaurant-details.component.html'
+  selector: 'mt-restaurant-details'
+  , templateUrl: './restaurant-details.component.html'
 })
 export class RestaurantDetailsComponent implements OnInit {
 
