@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 
 import { NgModule , LOCALE_ID} from '@angular/core'; // O Token LOCALE_ID servirá para ajuste de localização de moeda brasileira para a app.
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router'; // PreloadAllModules permite utilizar a estratégia de pre-loading do Angular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations' // Permitir capacidade de animação ao app
@@ -50,7 +50,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
   imports: [
     BrowserModule
     , BrowserAnimationsModule // Permitir capacidade de animação ao app
-    , HttpModule
+    , HttpClientModule
     , SharedModule.forRoot()
 
     /* Acrescentar a função forRoot() passando a constante ROUTES criada no arquivo app.routes.ts para configurar as rotas da aplicação. */
