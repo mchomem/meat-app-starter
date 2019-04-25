@@ -3,6 +3,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
 
 // Compartilhando os controles de formulário
 import { InputComponent } from './input/input.component'
@@ -15,6 +16,10 @@ import { RestaurantsService } from '../restaurants/restaurants.service'
 import { OrderService } from '../order/order.service'
 import { SnackbarComponent } from './messages/snackbar/snackbar.component'
 import { NotificationService } from '../shared/messages/notification.service'
+import { LoginService } from '../security/login/login.service'
+import { LoggedInGuard } from 'app/security/loggedin.guard'
+import { LeaveOrderGuard } from 'app/order/leave-order.guard'
+import { AuthInterceptor } from 'app/security/auth.interceptor'
 
 @NgModule({
     declarations: [
@@ -42,13 +47,21 @@ export class SharedModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SharedModule
-            
+
             // Disponibiliza os serviços nos provider para toda a app
             , providers: [
                 ShoppingCartService
                 , RestaurantsService
                 , OrderService
                 , NotificationService
+                , LoginService
+                , LoggedInGuard
+                , LeaveOrderGuard
+                , {
+                    provide: HTTP_INTERCEPTORS
+                    , useClass: AuthInterceptor
+                    , multi: true
+                 }
             ]
         }
     }
