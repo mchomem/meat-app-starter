@@ -36,8 +36,6 @@ export class OrderService {
     }
 
     checkOrder(order: Order): Observable<string> {
-        
-
         return this.http
             .post<Order>(`${MEAT_API}/orders`, order)
             .map(order => order.id)

@@ -12,9 +12,11 @@
 
 ### Inicializando o Servidor
 
-`ng serve` ou `npm start`
+`ng serve --open` ou `npm start`
 
 ## 2. Iniciando o Backend
+
+OBS: utilizar a opção com nodemon
 
 ### Instalando o json-server
 
@@ -23,6 +25,14 @@
 ### Iniciando o serviço (raiz da aplicação)
 
 `json-server db.json`
+
+### Instalando o nodemon para monitoramento de fontes
+
+`npm i nodemon -g`
+
+### Inciando o serviço (utilizando as modificações para https + nodemon)
+
+`nodemon --watch backend backend/dist/server.js`
 
 ## Goodies
 
